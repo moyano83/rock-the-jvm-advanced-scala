@@ -24,4 +24,15 @@ object EqualityPlayground {
   val pete = User("Pete",20,"pete@test.com")
   println(Equal(john,pete))
 
+  /* Exercise:
+   * Improve the Equal TC with an implicit conversion class: ===(anotherValue:T)
+   * Add !== (anotherValue:T)
+   */
+
+  implicit class EnricherEqual[T](value: T){
+    def ===(anotherValue:T)(implicit equality:Equal[T]):Boolean = equality(value, anotherValue)
+    def !==(anotherValue:T)(implicit equality:Equal[T]):Boolean = !equality(value, anotherValue)
+  }
+
+  println(john === pete)
 }
