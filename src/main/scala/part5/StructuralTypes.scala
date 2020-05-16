@@ -94,4 +94,6 @@ object StructuralTypes extends App{
 
   // Response: HeadEqualizer can accept Human because the Human implements the single method of the type
   HeadEqualizer.===(new Human, new Human)
+  // This is not type safe, because the type [T] in HeadEqualizer is Erased and because the type ducking relies on
+  // reflection, the above method is reduced to Headable == Headable
 }
