@@ -8,7 +8,7 @@ import scala.concurrent.duration._
 object FuturesAndPromises extends App {
 
   def meaningOfLife:Int = {
-    Thread.sleep(2000)
+    Thread.sleep(1000)
     42
   }
 
@@ -138,6 +138,7 @@ object FuturesAndPromises extends App {
   future.onComplete{
     case Success(x) => println(s"I've received ${x}")
   }
+
 
   val producer = new Thread(() =>{
     println("producer crunching numbers")

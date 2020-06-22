@@ -5,8 +5,8 @@ object DarkSugars extends App {
   // # 1: Method with single parameters
   def singleArgMethod(x:Int) = x + 1
 
-  val resultArg = singleArgMethod { //some expression
-    1
+  val resultArg = singleArgMethod {
+    1 // This is x in the expression
   }
 
   // # 2: single abstract method pattern
@@ -14,7 +14,7 @@ object DarkSugars extends App {
     def act(x:Int):Int
   }
 
-  val anAction = (x:Int) => x + 1
+  val anAction:Action = (x:Int) => x + 1
 
   abstract class SomeClass {
     def test(x:Int):Unit
@@ -38,9 +38,9 @@ object DarkSugars extends App {
 
   // #5: infix types
   class Composite[A,B]
-  val compositeValue : Int Composite String = ???
+  val compositeValue : Int Composite String = new Composite[Int, String]()
   class --> [A, B]
-  val compositeArrow:String-->String = ???
+  val compositeArrow:String-->String = new -->[String,String]()
 
   // #6: update Method
   val array = Array(1,2,3)

@@ -20,7 +20,7 @@ object PatternMatching extends App{
   class User(val name:String, val age:Int){}
   //Define companion object
   object User{
-    // Runtime looks for a method unapply that in the Person class that returns a tuple with two
+    // Runtime looks for a method unapply in the Person class that returns a tuple with two
     // things until it finds one, if the return type of Option is empty, then the pattern does not match
     def unapply(person: User): Option[(String, Int)] = Some((person.name, person.age))
 
@@ -35,7 +35,7 @@ object PatternMatching extends App{
   }
 
   // The singleton object that contains the pattern can be called in any way, as long as it is
-  // the same in the patter, i.e. :
+  // the same in the pattern, i.e. :
   // object PatternPerson{def unapply(...)}
   // bob match{PatternPerson(a,b) => ...}
   val legalStatus = bob.age match{
@@ -67,7 +67,7 @@ object PatternMatching extends App{
 
   bob13 match{
       //Only works for binary patterns
-    case name Or age => println("Example of infix patterns") //compiler rewrittes this as Or(name, age)
+    case name Or age => println("Example of infix patterns") //compiler rewrites this as Or(name, age)
   }
 
   //decomposing sequences
@@ -87,7 +87,7 @@ object PatternMatching extends App{
       else unapplySeq(arg.tail).map(arg.head +: _)
   }
 
-  val exampleList:MyList[Int] = Cons(1,  Cons(2, Cons(3, Empty)))
+  val exampleList:MyList[Int] = Cons(1, Cons(2, Cons(3, Empty)))
   val decomposed = exampleList match{
     // MyList(1,2,3,...) makes reference to the name of the pattern, not the object to pattern
     // match against. Patterns with varargs are pattern matched against the method unapplySeq

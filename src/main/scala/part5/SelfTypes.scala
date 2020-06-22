@@ -47,7 +47,7 @@ object SelfTypes extends App{
   class ComponentA extends Component
   class ComponentB extends Component
   class DependentComponent(val component: Component)
-  // The component is injected on runtime and the actual implementation dependes on the type injected
+  // The component is injected on runtime and the actual implementation depends on the type injected
 
   // The equivalent to the above in Scala would be something like
   trait ScalaComponent {
@@ -61,8 +61,8 @@ object SelfTypes extends App{
   trait ScalaApp{self:ScalaDependentComponent =>}
 
   //layer 1 - Small Components
-   trait Picture extends ScalaComponent
-   trait Stats extends ScalaComponent
+  trait Picture extends ScalaComponent
+  trait Stats extends ScalaComponent
 
   //layer 2 - compose
   // At this component you can choose which version of the small components you want to mix in your implementation

@@ -15,15 +15,15 @@ object CurriesAndPAF extends App{
   println(add3(5) == superAdder(3)(5))
 
   // scala allows the definition of curried methods with multiple parameter list
-  def curriedMethod(x:Int)(y:Int):Int = x + y //this is as well a curried method
+  def curriedMethod(x:Int)(y:Int):Int = x - y //this is as well a curried method
 
   //partially  applied functions can be defined by fulfilling one of the parameter lists
   // The function type has to be defined, when supplied only a subset of the parameter lists, the
   // compiler call lift on the curried function, returning a list with fewer parameter list.
   // Beware that the function here is actually a function value and not a method that is part of
   // an instance of a class
-  val add4:Int => Int = curriedMethod(4)
-  println(add4(5))
+  val substractTo4:Int => Int = curriedMethod(4)
+  println(substractTo4(5))
 
   //The compiler creates functions out of methods with a technique called ETA-Expansion
   def increment(x:Int) = x + 1
