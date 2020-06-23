@@ -3,7 +3,7 @@ package part3
 import scala.collection.mutable.ArrayBuffer
 import scala.util.Random
 
-object ThreadCommunication extends App {
+object L2_ThreadCommunication extends App {
 
   /**
     * The producer consumer problem:

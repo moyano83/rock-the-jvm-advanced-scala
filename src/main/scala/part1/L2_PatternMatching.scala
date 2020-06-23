@@ -1,6 +1,6 @@
 package part1
 
-object PatternMatching extends App{
+object L2_PatternMatching extends App{
 
 
   val list = List(1)

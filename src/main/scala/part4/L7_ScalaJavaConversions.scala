@@ -4,7 +4,7 @@ import java.{util => ju}
 
 import scala.util.{Failure, Success, Try}
 
-object ScalaJavaConversions extends App{
+object L7_ScalaJavaConversions extends App{
   // Sometimes we need to interact with Java classes, which is hard with collections because the scala ones are really
   // different from the Java ones. To do this, we import the following:
   import collection.JavaConverters._

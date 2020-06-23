@@ -1,6 +1,6 @@
 package part2
 
-object Monads extends App{
+object L4_Monads extends App{
 
   // Try monad
   trait Attempt[+A]{

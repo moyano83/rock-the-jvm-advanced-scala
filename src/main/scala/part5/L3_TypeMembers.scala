@@ -1,6 +1,6 @@
 package part5
 
-object TypeMembers extends App{
+object L3_TypeMembers extends App{
   class Animal
   class Dog extends Animal
   class Cat extends Animal

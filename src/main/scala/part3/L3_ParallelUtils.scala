@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicReference
 
 import scala.collection.parallel.ForkJoinTaskSupport
 
-object ParallelUtils extends App {
+object L3_ParallelUtils extends App {
 
   // 1 - Parallel collections
   val  parList = List(1,2,3,4,5).par // Operations on this list are handled by multiple threads at the same time

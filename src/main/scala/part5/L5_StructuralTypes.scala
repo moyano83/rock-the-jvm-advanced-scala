@@ -1,6 +1,6 @@
 package part5
 
-object StructuralTypes extends App{
+object L5_StructuralTypes extends App{
 
   type JavaCloseable = java.io.Closeable
 

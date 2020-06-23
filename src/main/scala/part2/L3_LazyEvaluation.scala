@@ -1,6 +1,6 @@
 package part2
 
-object LazyEvaluation extends App {
+object L3_LazyEvaluation extends App {
 
   //Lazy  DELAYS the evaluation of values
   lazy val x:Int = throw new RuntimeException("Ex")

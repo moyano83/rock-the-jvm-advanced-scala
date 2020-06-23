@@ -2,7 +2,7 @@ package part3
 
 import java.util.concurrent.Executors
 
-object Intro extends App {
+object L1_Intro extends App {
 
 
   val aThread = new Thread(() => println("Inside the thread"))

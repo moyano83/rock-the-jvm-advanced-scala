@@ -1,6 +1,6 @@
 package part5
 
-object FBoundedPolimorphism extends App{
+object L7_FBoundedPolimorphism extends App{
 
   // How to force a method in the supertype to accept a current type?
   trait Animal{

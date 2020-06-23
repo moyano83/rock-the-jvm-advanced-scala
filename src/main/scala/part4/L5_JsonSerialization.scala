@@ -2,9 +2,9 @@ package part4
 
 import java.util.Date
 
-import part4.JsonSerialization.JSONInt
+import part4.L5_JsonSerialization.JSONInt
 
-object JsonSerialization extends App {
+object L5_JsonSerialization extends App {
 
   /**
     * We have a social network that has Users, posts feeds and we want to serialize them

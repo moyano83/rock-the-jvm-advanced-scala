@@ -5,7 +5,7 @@ import scala.concurrent.{Await, Future, Promise}
 import scala.util.{Failure, Random, Success}
 import scala.concurrent.duration._
 
-object FuturesAndPromises extends App {
+object L3_FuturesAndPromises extends App {
 
   def meaningOfLife:Int = {
     Thread.sleep(1000)

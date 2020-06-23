@@ -1,8 +1,8 @@
 package part5
 
-import part5.RockingInheritance.Animal
+import part5.L1_RockingInheritance.Animal
 
-object Variance extends App {
+object L2_Variance extends App {
 
   trait Animal {
     def name: String

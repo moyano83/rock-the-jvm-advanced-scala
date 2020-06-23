@@ -1,6 +1,6 @@
 package part2
 
-object PartialFunctions extends App{
+object L1_PartialFunctions extends App{
 
   val afunction = (x:Int) => x + 1 // function on all the Int domain
 

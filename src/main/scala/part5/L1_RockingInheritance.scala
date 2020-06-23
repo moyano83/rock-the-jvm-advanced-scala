@@ -1,6 +1,6 @@
 package part5
 
-object RockingInheritance extends App{
+object L1_RockingInheritance extends App{
   //convenience
   trait Writer[T]{
     def write(t:T):Unit

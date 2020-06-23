@@ -1,6 +1,6 @@
 package part2
 
-object CurriesAndPAF extends App{
+object L2_CurriesAndPAF extends App{
 
   //curried functions
 

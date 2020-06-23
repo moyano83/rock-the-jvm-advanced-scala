@@ -1,6 +1,6 @@
 package part4
 
-object OrganizingImplicits extends App {
+object L2_OrganizingImplicits extends App {
 
   // there must be an implicit for ints in the scope to pass to the sorted method
   // This is retrieved from scala.Predef, which is imported by scala by default

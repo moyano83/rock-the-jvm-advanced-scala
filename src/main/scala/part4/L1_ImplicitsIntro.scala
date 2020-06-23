@@ -2,7 +2,7 @@ package part4
 
 import java.time.temporal.TemporalAmount
 
-object ImplicitsIntro extends App {
+object L1_ImplicitsIntro extends App {
 
   case class Person(name:String) {
     def greet = s"Hello ${name}"

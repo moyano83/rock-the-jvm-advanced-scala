@@ -1,6 +1,6 @@
 package part5
 
-object SelfTypes extends App{
+object L6_SelfTypes extends App{
   // Self types are a way to requiring a type to be mixed in
   trait Instrumentalist{
     def play()

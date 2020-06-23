@@ -1,6 +1,6 @@
 package part1
 
-object DarkSugars extends App {
+object L1_DarkSugars extends App {
 
   // # 1: Method with single parameters
   def singleArgMethod(x:Int) = x + 1

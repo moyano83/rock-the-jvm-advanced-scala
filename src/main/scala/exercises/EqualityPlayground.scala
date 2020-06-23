@@ -1,6 +1,6 @@
 package exercises
 
-import part4.TypeClasses.{Equal, User, UserSerializer}
+import part4.L3_TypeClasses.{Equal, User, UserSerializer}
 
 object EqualityPlayground {
 

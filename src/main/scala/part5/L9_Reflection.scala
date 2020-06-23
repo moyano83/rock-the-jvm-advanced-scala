@@ -1,7 +1,7 @@
 package part5
 
 
-object Reflection extends App {
+object L9_Reflection extends App {
   // How do I instantiate a class or call a method by passing the name in runtime?
   // reflection + macros + quasiquotes => METAPROGRAMMING
 

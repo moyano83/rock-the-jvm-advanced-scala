@@ -1,6 +1,6 @@
 package part4
 
-object PimpMyLibrary extends App{
+object L4_PimpMyLibrary extends App{
   // Enrichment allows us to extend a class functionality (which we might not have access to) with additional methods and
   // properties. To do that, define an implicit class that takes a single parameter, a value of the type to enrich:
   implicit class RichInt(value:Int){

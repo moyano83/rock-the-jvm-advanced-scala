@@ -1,6 +1,6 @@
 package part5
 
-object HigherKindedTypes extends App{
+object L8_HigherKindedTypes extends App{
   // higher kinded types are a deeper generic types with some unknown type parameter at the deepest level
   trait AHigherKindedType[F[_]] // This is an advanced language feature
 

@@ -1,6 +1,6 @@
 package part5
 
-object PathDependentTypes extends App{
+object L4_PathDependentTypes extends App{
   //You can define class objects and types pretty much everywhere with the exception of types
   class Outer{
     class Inner

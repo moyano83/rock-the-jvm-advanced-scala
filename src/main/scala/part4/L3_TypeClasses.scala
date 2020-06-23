@@ -1,6 +1,6 @@
 package part4
 
-object TypeClasses extends App{
+object L3_TypeClasses extends App{
   // A Type class is a trait that takes a type and describe which operations can be performed on that class
 
   /* Imagine we want to implement something like this, for a social network, to print all the objects that are needed in an
