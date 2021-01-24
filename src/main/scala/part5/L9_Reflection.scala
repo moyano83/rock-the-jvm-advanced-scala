@@ -2,16 +2,20 @@ package part5
 
 
 object L9_Reflection extends App {
+
   // How do I instantiate a class or call a method by passing the name in runtime?
   // reflection + macros + quasiquotes => METAPROGRAMMING
 
   //PART 1
 
-  case class Person(name:String){
-    def sayMyName():Unit = println(s"Hi mi name is ${name}")
+  case class Person(name: String) {
+    def sayMyName(): Unit = println(s"Hi mi name is ${name}")
   }
+
   // 0 - Import universe
+
   import scala.reflect.runtime.universe
+
   // 1 - get Mirror
   val m = universe.runtimeMirror(getClass.getClassLoader)
   // 2 - Instantiate a class object
@@ -47,9 +51,9 @@ object L9_Reflection extends App {
 
   // PART2 : Type Erasure and Reflection
   // Due to type erasure, you cannot differenciate generic types at runtime
-  List(1,2) match {
-    case _:List[String] =>println("A List of Strings") // This option is printed due to type erasure
-    case _:List[Number] =>println("A List of Number")
+  List(1, 2) match {
+    case _: List[String] => println("A List of Strings") // This option is printed due to type erasure
+    case _: List[Number] => println("A List of Number")
   }
   // The IDE give us a warning for the above:
   // fruitless type test: a value of type List[Int] cannot also be a List[Number](but still might match its erasure)
@@ -58,6 +62,7 @@ object L9_Reflection extends App {
 
   // Solution => TypeTags
   //0 - Import
+
   import universe._
 
   // This is a way to create the type tag "manually"
@@ -65,12 +70,12 @@ object L9_Reflection extends App {
 
   println(tTag.tpe) // This is the fully qualified name for the class
   // TypeTag are use as a type evidence that allows us to inspect generic types
-  class MyMap[K,V]
+  class MyMap[K, V]
 
-  def getTypeArguments[T](value:T)(implicit tag:TypeTag[T]) = tag.tpe match {
+  def getTypeArguments[T](value: T)(implicit tag: TypeTag[T]) = tag.tpe match {
     // `TypeRef(pre, sym, typeArguments)`: `pre` is the prefix of the type reference, `sym` is the symbol
     // referred to by the type reference, and `typeArguments` is a possible empty list of type arguments.
-    case TypeRef(_,_,typeArguments) => typeArguments
+    case TypeRef(_, _, typeArguments) => typeArguments
     case _ => List()
   }
 
@@ -78,10 +83,12 @@ object L9_Reflection extends App {
   // How is that the type of String Int is not erased? The compiler creates the typeTag at compile time which contains the
   // information about the specific types used
 
-  def isSubType[A,B](a:A,b:B)(implicit ta: TypeTag[A], tb:TypeTag[B]):Boolean = ta.tpe <:< tb.tpe
+  def isSubType[A, B](a: A, b: B)(implicit ta: TypeTag[A], tb: TypeTag[B]): Boolean = ta.tpe <:< tb.tpe
 
   class Animal
+
   class Frog extends Animal
+
   println("Is Frog subtype of animal? " + isSubType(new Frog, new Animal))
 
   // The type tags can be linked to other reflection tools

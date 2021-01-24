@@ -1,6 +1,5 @@
 package part3
 
-import scala.collection.mutable.ArrayBuffer
 import scala.util.Random
 
 object L2_ThreadCommunication extends App {
@@ -13,20 +12,21 @@ object L2_ThreadCommunication extends App {
     * The problem is to force threads to run in a guaranteed order (first produce then consume)
     */
 
-  class SimpleContainer{
-    private var value :Int = 0
+  class SimpleContainer {
+    private var value: Int = 0
 
-    def isEmpty:Boolean = value == 0
-    def get():Int = {
+    def isEmpty: Boolean = value == 0
+
+    def get(): Int = {
       val res = value
       value = 0
       res
     }
 
-    def set(newValue:Int) = value = newValue
+    def set(newValue: Int) = value = newValue
   }
 
-  def naiveConsumer():Unit= {
+  def naiveConsumer(): Unit = {
     val container = new SimpleContainer
 
     val consumer = new Thread(() => {
@@ -42,7 +42,7 @@ object L2_ThreadCommunication extends App {
       println("Producer starting to produce")
       Thread.sleep(100)
       val value = Random.nextInt()
-      println("I have produced "+ value)
+      println("I have produced " + value)
       container.set(value)
     })
 
@@ -52,7 +52,7 @@ object L2_ThreadCommunication extends App {
 
   //naiveConsumer()
   // synchronized methods are available on AnyRef types (not in AnyVal types)
-  //wait and notify
+  // wait and notify
   // wait suspends the current thread indefinitely and releases the lock in the synchronized object
   // notify/notifyAll signals one/all sleeping thread to continue (you don't know which Thread will get the lock)
 
@@ -71,7 +71,7 @@ object L2_ThreadCommunication extends App {
       println("Producer starting to produce")
       Thread.sleep(100)
       val value = Random.nextInt()
-      println("I have produced "+ value)
+      println("I have produced " + value)
       container.synchronized {
         container.set(value)
         container.notify()
@@ -84,29 +84,30 @@ object L2_ThreadCommunication extends App {
 
   //smartProducerConsumer()
 
-  class ComplexContainer{
-    private var value :List[Int] = Nil
+  class ComplexContainer {
+    private var value: List[Int] = Nil
 
-    def isEmpty:Boolean = value.isEmpty
-    def isFull:Boolean = value.size >=3
+    def isEmpty: Boolean = value.isEmpty
 
-    def get():Int = {
+    def isFull: Boolean = value.size >= 3
+
+    def get(): Int = {
       val res = value.head
       value = value.tail
       res
     }
 
-    def set(newValue:Int) = value = newValue :: value
+    def set(newValue: Int) = value = newValue :: value
   }
 
   def multiProducerConsumer() = {
     val container = new ComplexContainer
 
     val consumer = new Thread(() => {
-      while(true) {
+      while (true) {
         container.synchronized {
           println("Consumer started to wait")
-          if(container.isEmpty) {
+          if (container.isEmpty) {
             println("Consumer wait for empty buffer")
             container.wait()
           }
@@ -119,7 +120,7 @@ object L2_ThreadCommunication extends App {
     })
 
     val producer = new Thread(() => {
-      while(true) {
+      while (true) {
         container.synchronized {
           println("Producer starting to produce")
           if (container.isFull) {
@@ -132,12 +133,13 @@ object L2_ThreadCommunication extends App {
           container.notify()
         }
         println("Producer to sleep")
-        Thread.sleep(Random.nextInt(500 ).abs)
+        Thread.sleep(Random.nextInt(500).abs)
       }
     })
 
     consumer.start()
     producer.start()
   }
+
   multiProducerConsumer()
 }

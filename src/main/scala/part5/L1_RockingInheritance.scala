@@ -1,30 +1,40 @@
 package part5
 
-object L1_RockingInheritance extends App{
+object L1_RockingInheritance extends App {
+
   //convenience
-  trait Writer[T]{
-    def write(t:T):Unit
+  trait Writer[T] {
+    def write(t: T): Unit
   }
 
-  trait Closeable{
-    def close(status:Int):Unit
+  trait Closeable {
+    def close(status: Int): Unit
   }
 
-  trait GenericStream[T]{
-    def foreach(x:T => Unit):Unit
+  trait GenericStream[T] {
+    def foreach(x: T => Unit): Unit
   }
 
   //If we have a convenient method that receives something that might mix some other traits we can write
-  def processStream[T](stream:GenericStream[T] with Writer[T] with Closeable):Unit = {
+  def processStream[T](stream: GenericStream[T] with Writer[T] with Closeable): Unit = {
     stream.foreach(println)
     stream.close(0)
   }
 
   //diamon problem with multiple inheritance
-  trait Animal {def name:String}
-  trait Lion extends Animal {override def name = "Lion"}
-  trait Tiger extends Animal{override def name = "Tiger"}
-  class Tigron extends Tiger with Lion{
+  trait Animal {
+    def name: String
+  }
+
+  trait Lion extends Animal {
+    override def name = "Lion"
+  }
+
+  trait Tiger extends Animal {
+    override def name = "Tiger"
+  }
+
+  class Tigron extends Tiger with Lion {
     // The compiler is ok with this because the Tigron overrides both overrides
     // if we remove this, the class still compiles because this is equivalent to
     // Tigron extends animal with Tiger(overrides Animal) with Lion(override Tiger): chain of inheritance from left to right
@@ -32,30 +42,30 @@ object L1_RockingInheritance extends App{
   }
 
   //Super problem or type linealization
-  trait Cold{
-    def print:Unit = println("Cold")
+  trait Cold {
+    def print: Unit = println("Cold")
   }
 
-  trait Green extends Cold{
-    override def print:Unit = {
+  trait Green extends Cold {
+    override def print: Unit = {
       println("Green")
       super.print
     }
   }
 
-  trait Blue extends Cold{
-    override def print:Unit = {
+  trait Blue extends Cold {
+    override def print: Unit = {
       println("Blue")
       super.print
     }
   }
 
   class Red {
-    def print:Unit = println("Red")
+    def print: Unit = println("Red")
   }
 
-  class White extends Red with Green with Blue{
-    override def print:Unit = {
+  class White extends Red with Green with Blue {
+    override def print: Unit = {
       println("White")
       super.print
     }

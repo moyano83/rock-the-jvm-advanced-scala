@@ -1,7 +1,7 @@
 package part4
 
-import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 object L6_MagnetPattern extends App{
   // Magnet pattern tries to solve problems created by method overloading, for example:

@@ -1,17 +1,17 @@
 package part2
 
-object L1_PartialFunctions extends App{
+object L1_PartialFunctions extends App {
 
-  val afunction = (x:Int) => x + 1 // function on all the Int domain
+  val afunction = (x: Int) => x + 1 // function on all the Int domain
 
-  val aFuzzyFunction = (x:Int) => x match {
+  val aFuzzyFunction = (x: Int) => x match {
     case 1 => 12
     case 3 => 42
     case 5 => 111
   }
   //Function defined in the domain {1,3} => Int is a partial function from Int to Int
   //Scala support partial functions like below:
-  val aPartialFunction:PartialFunction[Int, Int] = {
+  val aPartialFunction: PartialFunction[Int, Int] = {
     case 1 => 12
     case 3 => 42
     case 5 => 111
@@ -26,26 +26,26 @@ object L1_PartialFunctions extends App{
   println(aPartialFunction.lift(12))
 
   //partial functions can be chained with another partial function as argument
-  aPartialFunction.orElse[Int, Int]{
+  aPartialFunction.orElse[Int, Int] {
     case 2 => 123
   }
 
   // partial functions can be attributed to something declared as a total function
   // because partial functions extends function and therefore higher order functions accepts
   // partial functions
-  val aTotalFunction :Int => Int = {
+  val aTotalFunction: Int => Int = {
     case 4 => 122
   }
   //Note: A partial function can only have one parameter type!
 
   //exercise: instantiate a partial function
-  val apartialSalutation= new PartialFunction[String, String] {
+  val apartialSalutation = new PartialFunction[String, String] {
     override def apply(v1: String): String = s"Hello $v1"
 
     override def isDefinedAt(x: String): Boolean = x.startsWith("Hi")
   }
 
-  val aPartialFunctionBot:PartialFunction[String, Unit] = {
+  val aPartialFunctionBot: PartialFunction[String, Unit] = {
     case "hello" => println(s"Hi!")
     case "goodbye" => println("Bye")
   }

@@ -12,7 +12,7 @@ object L3_LazyEvaluation extends App {
 
   def simpleCondition()=false
 
-  // Side effects (not called(
+  // Side effects (not called)
   lazy val side = sideEfectCondition()
   if(simpleCondition() && sideEfectCondition()) println("yes") else println("no")
 

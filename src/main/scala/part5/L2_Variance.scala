@@ -1,20 +1,18 @@
 package part5
 
-import part5.L1_RockingInheritance.Animal
-
 object L2_Variance extends App {
 
   trait Animal {
     def name: String
   }
 
-  class Dog(val name:String ="Dog") extends Animal
+  class Dog(val name: String = "Dog") extends Animal
 
-  class Cat(val name:String ="Cat") extends Animal
+  class Cat(val name: String = "Cat") extends Animal
 
-  class Kitty(override val name:String ="Kitty") extends Cat
+  class Kitty(override val name: String = "Kitty") extends Cat
 
-  class Crocodile(val name:String ="Crocodile") extends Animal
+  class Crocodile(val name: String = "Crocodile") extends Animal
 
   // Variance is the problem of type substitution on generics:
   class Cage[T] {}
@@ -65,17 +63,19 @@ object L2_Variance extends App {
   // val ccage:AnotherCovariantCage[Animal] = new AnotherCovariantCage[Cat]()
   // ccage.addAnimal(new Dog) //Dog is an animal
 
-  class AnotherContraCovariantCage[-T]{
-    def addAnimal(animal:T)  = {} //This is fine
+  class AnotherContraCovariantCage[-T] {
+    def addAnimal(animal: T) = {} //This is fine
   }
+
   val ccage: AnotherContraCovariantCage[Cat] = new AnotherContraCovariantCage[Animal]()
+
   // ccage.addAnimal(new Animal) // won't compile
   //ccage.addAnimal(new Cat) // Only cats are allowed
 
   // If we want to create a covariant collection in which we can add elements to it, we need to do the following:
   class MyList[+A] {
     // def add(element:A):MyList[A] This won't compile
-    def add[B >: A](element:B):MyList[B] = new MyList[B] //Compiles because we are widening the type
+    def add[B >: A](element: B): MyList[B] = new MyList[B] //Compiles because we are widening the type
   }
 
   val aListOfAnimals = new MyList[Kitty]()
@@ -96,11 +96,11 @@ object L2_Variance extends App {
   // val dogShop = catShop //Valid replacement
   // dogShop.get(true) !! Returns a Cat since the implementation of PetShop[Animal]
   // The hack for the above to compile is the following:
-  class PetShop[-T]{
-    def get[B <: T](defaultAnimal:B ):B = defaultAnimal
+  class PetShop[-T] {
+    def get[B <: T](defaultAnimal: B): B = defaultAnimal
   }
 
-  val shop:PetShop[Cat] = new PetShop[Animal]
+  val shop: PetShop[Cat] = new PetShop[Animal]
   //shop.get(new Dog) // This call is illegal since Dog is not a subtype of cat
   val kitty = shop.get(new Kitty()) // This will return a Kitty, which still is a Cat
 

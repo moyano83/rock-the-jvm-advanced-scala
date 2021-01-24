@@ -1,33 +1,32 @@
 package part2
 
-object L4_Monads extends App{
+object L4_Monads extends App {
 
   // Try monad
-  trait Attempt[+A]{
-    def flatMap[B](f: A => Attempt[B]):Attempt[B]
+  trait Attempt[+A] {
+    def flatMap[B](f: A => Attempt[B]): Attempt[B]
   }
 
-  object Attempt{
-    def apply[A](a: => A): Attempt[A] =  try{
+  object Attempt {
+    def apply[A](a: => A): Attempt[A] = try {
       Success(a)
     } catch {
-      case ex:Exception => Fail(ex)
+      case ex: Exception => Fail(ex)
     }
   }
 
-  case class Success[A](a:A) extends Attempt[A]{
-    def flatMap[B](f: A => Attempt[B]):Attempt[B] = try{
+  case class Success[A](a: A) extends Attempt[A] {
+    def flatMap[B](f: A => Attempt[B]): Attempt[B] = try {
       f(a)
-    } catch{
+    } catch {
       case ex => Fail(ex)
     }
 
   }
 
-  case class Fail(e:Throwable) extends Attempt[Nothing]{
-    def flatMap[B](f: Nothing => Attempt[B]):Attempt[B] = this
+  case class Fail(e: Throwable) extends Attempt[Nothing] {
+    def flatMap[B](f: Nothing => Attempt[B]): Attempt[B] = this
   }
-
 
 
   // Monad Laws

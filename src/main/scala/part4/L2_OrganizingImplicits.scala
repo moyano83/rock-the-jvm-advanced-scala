@@ -11,7 +11,7 @@ object L2_OrganizingImplicits extends App {
   implicit val orderingFromGreather: Ordering[Int] = Ordering.fromLessThan(_ > _)
   println(List(2, 1, 4, 3).sorted)
 
-  /* Implicit values (to be used as implicit paramethers) can be:
+  /* Implicit values (to be used as implicit parameters) can be:
    * - Val/vars
    * - Objects
    * - accessor methods (def with no parentheses)
@@ -54,5 +54,5 @@ object L2_OrganizingImplicits extends App {
       Ordering.fromLessThan((a, b) => a.unitPrice < b.unitPrice)
   }
 
-  println(List(Purchase(10,16), Purchase(13,9), Purchase(12,12)).sorted)
+  println(List(Purchase(10, 16), Purchase(13, 9), Purchase(12, 12)).sorted)
 }
