@@ -11,7 +11,7 @@ object L3_TypeClasses extends App {
     def toHtml: String
   }
 
-  /* We can put the implementation in every class, but has some disatvantages
+  /* We can put the implementation in every class, but has some disadvantages
    * 1 - This only works for the type we write
    * 2 - This is just an implementation, might be better ones
    */
@@ -60,7 +60,7 @@ object L3_TypeClasses extends App {
     def apply(a: T, b: T): Boolean
   }
 
-  object UserEqualsByName extends Equal[User] {
+  implicit object UserEqualsByName extends Equal[User] {
     override def apply(a: User, b: User): Boolean = a.name == b.name
   }
 
@@ -77,13 +77,13 @@ object L3_TypeClasses extends App {
   object HTMLSerializer {
     def serialize[T](value: T)(implicit serializer: HTMLSerializer[T]): String = serializer.serialize(value)
 
-    /* By adding this method, the compiler will surface the entiere scope for the type serializer, and would be returned by
+    /* By adding this method, the compiler will surface the entire scope for the type serializer, and would be returned by
      * this method
      */
     def apply[T](implicit serializer: HTMLSerializer[T]) = serializer
   }
 
-  /* As it can be seen the compiler inserts the appropiate serializer for the type INT
+  /* As it can be seen the compiler inserts the appropriate serializer for the type INT
    * we can define multiple implicits for different types, and the compiler will be able to figure out which one to use
    */
   println(HTMLSerializer.serialize(32))
@@ -97,8 +97,8 @@ object L3_TypeClasses extends App {
     def apply[T](a: T, b: T)(implicit equalizer: Equal[T]): Boolean = equalizer.apply(a, b)
   }
 
-  println(Equal(User("John", 13, "john@test.com"), User("Pete", 20, "pete@test.com"))) //This is called AD-HOC polymorphism
-
+  //This is called AD-HOC polymorphism
+  println(Equal(User("John", 13, "john@test.com"), User("Pete", 20, "pete@test.com"))(UserEqualsByName))
 
   //PART 3:
   implicit class HTMLEnrichment[T](value: T) {
@@ -107,7 +107,7 @@ object L3_TypeClasses extends App {
 
   // This is where the implicit classes enrichment stands, note that john is implicitly converted to a HTMLEnrichment class
   // and then we can define which serializer to use without touching the original User class, if we define the implicit
-  // param,eter to toHTML method, it looks like the method is part of the user class
+  // parameter to toHTML method, it looks like the method is part of the user class
   println(john.toHTML)
   // It is possible to have multiple implementations for the same type
   println(john.toHTML(PartialUserSerializer))

@@ -17,7 +17,7 @@ object L1_RockingInheritance extends App {
 
   //If we have a convenient method that receives something that might mix some other traits we can write
   def processStream[T](stream: GenericStream[T] with Writer[T] with Closeable): Unit = {
-    stream.foreach(println)
+    stream.foreach(stream.write)
     stream.close(0)
   }
 
@@ -97,5 +97,10 @@ object L1_RockingInheritance extends App {
    */
   val color = new White();
   color.print
-
+  /* Prints:
+  White
+  Blue
+  Green
+  Cold
+   */
 }

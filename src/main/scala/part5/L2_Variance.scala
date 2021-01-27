@@ -39,7 +39,7 @@ object L2_Variance extends App {
 
   // The following will not compile:
   // class ContravariantCage[-T](val animal: T)
-  // because if the compiler would pass this code as valid, you'll be able to code something like this:
+  // because if the compiler pass this code as valid, you'll be able to code something like this:
   // val catCage: ContravariantCage[Cat] = new ContravariantCage[Animal](new Dog)
   // Dog is an animal, therefore I can pass it as a Dog is an Animal
   //

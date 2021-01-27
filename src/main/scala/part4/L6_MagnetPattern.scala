@@ -14,7 +14,7 @@ object L6_MagnetPattern extends App{
     def receive(response:P2PRequest):Int
     def receive(response:P2PResponse):Int
     def receive[T](response:Serializer[T]):Int
-    def receive(response:Future[P2PRequest])
+    def receive(response:Future[P2PRequest]):Int
   }
 
   /* Problem 1: type erasure: we can't write a method like the one below
@@ -29,7 +29,7 @@ object L6_MagnetPattern extends App{
     def apply():Result
   }
   //With the method below we assure that we receive the right type of the Result
-  def receive[T](magnet:MessageMagnet[T]) = magnet()
+  def receive[T](magnet:MessageMagnet[T]): T = magnet()
 
   implicit class fromP2PRequest(request:P2PRequest) extends MessageMagnet[Int]{
     override def apply(): Int = {
